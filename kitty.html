@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitty美妆店 - 专业正品</title>
+    <style>
+        :root {
+            --primary-color: #ff6b88;
+            --secondary-color: #ff9a9e;
+            --light-bg: #fff5f7;
+            --dark-text: #333;
+            --white: #fff;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+        
+        /* 导航栏 */
+        .navbar {
+            background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: var(--white);
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        
+        .nav-links a:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+        
+        /* 英雄区域 */
+        .hero {
+            height: 500px;
+            background: url('https://img.alicdn.com/imgextra/i1/2201504521587/O1CN01JYdZQk1xW9jYVnzQN_!!2201504521587.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(255,107,136,0.7), rgba(255,154,158,0.7));
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            color: var(--white);
+            max-width: 600px;
+        }
+        
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: #ff4757;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* 主要内容区域 */
+        .main-content {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.2em;
+            color: var(--primary-color);
+        }
+        
+        /* 店铺跳转区域 */
+        .shop-section {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 60px;
+            text-align: center;
+        }
+        
+        .shop-section p {
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+        
+        /* 商品展示区域 */
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .product {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .product:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .product img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-name {
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        
+        .product-desc {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 0.9em;
+        }
+        
+        .product-price {
+            color: var(--primary-color);
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .buy-btn {
+            display: block;
+            background: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 10px 0;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .buy-btn:hover {
+            background: #ff4757;
+        }
+        
+        /* 联系区域 */
+        .contact-section {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        
+        .contact-info {
+            margin-top: 30px;
+            font-size: 1.2em;
+        }
+        
+        .contact-info p {
+            margin-bottom: 15px;
+        }
+        
+        .phone {
+            font-size: 1.5em;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        
+        /* 页脚 */
+        footer {
+            background: #333;
+            color: var(--white);
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 20px 0;
+        }
+        
+        .footer-links li {
+            margin: 0 15px;
+        }
+        
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        
+        .copyright {
+            margin-top: 20px;
+            color: #aaa;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+            }
+            
+            .nav-links {
+                margin-top: 20px;
+            }
+            
+            .nav-links li {
+                margin: 0 10px;
+            }
+            
+            .hero {
+                height: 400px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2em;
+            }
+            
+            .products {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+
+        /* 商品详情页样式 */
+        .product-detail {
+            display: none;
+            background: var(--white);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 60px;
+        }
+
+        .product-detail.active {
+            display: block;
+        }
+
+        .product-gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .product-gallery img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .product-gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        .product-gallery img.main {
+            grid-column: span 4;
+            height: 400px;
+            cursor: default;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .back-btn:hover {
+            text-decoration: underline;
+            background-color: rgba(255,107,136,0.1);
+        }
+
+        /* 商品规格选择 */
+        .product-specs {
+            margin: 20px 0;
+        }
+
+        .spec-option {
+            display: inline-block;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            padding: 8px 15px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .spec-option:hover, .spec-option.selected {
+            border-color: var(--primary-color);
+            background-color: rgba(255,107,136,0.1);
+            color: var(--primary-color);
+        }
+
+        /* 商品详情内容 */
+        .product-content {
+            margin-top: 30px;
+            line-height: 1.8;
+        }
+
+        .product-content h3 {
+            color: var(--primary-color);
+            margin: 20px 0 10px;
+        }
+
+        .product-content ul {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo" id="home-link">Kitty美妆店</a>
+            <ul class="nav-links">
+                <li><a href="#" id="products-link">全部商品</a></li>
+                <li><a href="https://shop474071861.taobao.com" target="_blank" id="shop-link">进入店铺</a></li>
+                <li><a href="#" id="contact-link">联系店主</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- 英雄区域 -->
+    <section class="hero" id="home-section">
+        <div class="container">
+            <div class="hero-content">
+                <h1>发现你的美</h1>
+                <p>Kitty美妆店为您提供全球正品美妆，正品保证</p>
+                <a href="#" class="btn" id="hero-btn">立即选购</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 主要内容 -->
+    <div class="main-content container">
+        <!-- 店铺跳转区域 -->
+        <section id="shop-section" class="shop-section">
+            <h2 class="section-title">欢迎光临Kitty美妆店</h2>
+            <p>我们提供各类正品美妆产品，包括护肤、彩妆等，所有商品均为正品。</p>
+            <p>点击下方按钮进入我们的淘宝店铺，查看更多商品和优惠活动。</p>
+            <a href="https://shop474071861.taobao.com" class="btn" target="_blank">进入淘宝店铺</a>
+        </section>
+        
+        <!-- 商品展示区域 -->
+        <section id="products-section">
+            <h2 class="section-title">全部商品</h2>
+            <div class="products" id="products-container">
+                <!-- 产品1 -->
+                <div class="product" data-product="product1">
+                    
+                    <div class="product-info">
+                        <div class="product-name">珂拉琪皮卡丘迷你唇釉702</div>
+                        <div class="product-desc">镜面水光质地，持久显色不拔干</div>
+                        <div class="product-price">¥51</div>
+                        <a href="https://item.taobao.com/item.htm?id=674899123456" class="buy-btn" target="_blank">立即购买</a>
+                    </div>
+                </div>
+                
+                <!-- 产品2 -->
+                <div class="product" data-product="product2">
+                    
+                    <div class="product-info">
+                        <div class="product-name">珂拉琪芭比唇釉丝绒233</div>
+                        <div class="product-desc">镜面水光766口红723正品</div>
+                        <div class="product-price">¥51</div>
+                        <a href="https://item.taobao.com/item.htm?id=674899123457" class="buy-btn" target="_blank">立即购买</a>
+                    </div>
+                </div>
+                
+                <!-- 产品3 -->
+                <div class="product" data-product="product3">
+                    
+                    <div class="product-info">
+                        <div class="product-name">珂拉琪冰淇淋唇釉P615</div>
+                        <div class="product-desc">空气丝绒r888镜面水光730口红</div>
+                        <div class="product-price">¥51</div>
+                        <a href="https://item.taobao.com/item.htm?id=674899123458" class="buy-btn" target="_blank">立即购买</a>
+                    </div>
+                </div>
+                
+                <!-- 产品4 -->
+                <div class="product" data-product="product4">
+                    
+                    <div class="product-info">
+                        <div class="product-name">珂拉琪水雾唇露O349</div>
+                        <div class="product-desc">水光O311不沾杯口红307唇釉</div>
+                        <div class="product-price">¥51</div>
+                        <a href="https://item.taobao.com/item.htm?id=674899123459" class="buy-btn" target="_blank">立即购买</a>
+                    </div>
+                </div>
+                
+                <!-- 产品5 -->
+                <div class="product" data-product="product5">
+                    
+                    <div class="product-info">
+                        <div class="product-name">珂拉琪可可粉雾唇泥923</div>
+                        <div class="product-desc">捏捏唇泥m07唇釉921口红</div>
+                        <div class="product-price">¥51</div>
+                        <a href="https://item.taobao.com/item.htm?id=674899123460" class="buy-btn" target="_blank">立即购买</a>
+                    </div>
+                </div>
+                
+                <!-- 产品6 -->
+                <div class="product" data-product="product6">
+                    
+                    <div class="product-info">
+                        <div class="product-name">珂拉琪小黑镜唇釉镜面708</div>
+                        <div class="product-desc">老款水光702平价学生r706</div>
+                        <div class="product-price">¥51</div>
+                        <a href="https://item.taobao.com/item.htm?id=674899123461" class="buy-btn" target="_blank">立即购买</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 商品详情页 -->
+        <section id="product-detail-section" class="product-detail">
+            <a href="#" class="back-btn" id="back-btn">← 返回商品列表</a>
+            <div class="product-gallery" id="product-gallery">
+                <!-- 图片将通过JavaScript动态加载 -->
+            </div>
+            <h2 id="detail-product-name">商品名称</h2>
+            <div class="product-price" id="detail-product-price">¥51</div>
+            
+            <div class="product-specs">
+                <h3>选择规格</h3>
+                <div class="spec-option selected">702 镜面水光</div>
+                <div class="spec-option">703 丝绒雾面</div>
+                <div class="spec-option">704 哑光质地</div>
+            </div>
+            
+            <div class="product-content">
+                <h3>产品详情</h3>
+                <p id="detail-product-desc">商品详细描述信息将显示在这里...</p>
+                
+                <h3>产品特点</h3>
+                <ul>
+                    <li>持久显色，不易脱妆</li>
+                    <li>水润质地，不拔干</li>
+                    <li>多种色号可选</li>
+                    <li>适合各种肤质</li>
+                </ul>
+                
+                <h3>使用方法</h3>
+                <p>直接涂抹于唇部，可单独使用或与其他唇部产品搭配使用。</p>
+            </div>
+            
+            <a href="#" class="buy-btn" style="width: 200px; margin-top: 20px;" id="detail-buy-btn" target="_blank">立即购买</a>
+        </section>
+        
+        <!-- 联系区域 -->
+        <section id="contact-section" class="contact-section">
+            <h2 class="section-title">联系我们</h2>
+            <p>有任何问题或需要帮助，欢迎随时联系我们</p>
+            <div class="contact-info">
+                <p><strong>店主：</strong>黄女士</p>
+                <p><strong>联系电话：</strong><span class="phone">18049445537</span> (微信同号)</p>
+                <p><strong>工作时间：</strong>周一至周日 9:00-22:00</p>
+                <p><strong>电脑版店铺：</strong><a href="https://shop474071861.taobao.com" target="_blank">电脑版淘宝店铺</a></p>
+                <p><strong>手机版店铺：</strong><a href="https://shop.m.taobao.com/shop/shop_index.htm?shop_id=2201504521587" target="_blank">手机版淘宝店铺</a></p>
+            </div>
+        </section>
+    </div>
+    
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <ul class="footer-links">
+                <li><a href="#" class="footer-products-link">全部商品</a></li>
+                <li><a href="https://shop474071861.taobao.com" target="_blank">进入店铺</a></li>
+                <li><a href="#" class="footer-contact-link">联系店主</a></li>
+            </ul>
+            <p class="copyright">&copy; Kitty美妆店 版权所有 | 所有商品均为正品</p>
+        </div>
+    </footer>
+
+    <script>
+        // 商品数据
+        const products = {
+            'product1': {
+                name: '珂拉琪皮卡丘迷你唇釉702',
+                price: '¥51',
+                desc: '镜面水光质地，持久显色不拔干，富含维生素E和多种植物精华，滋润双唇的同时打造水润光泽感。',
+                images: [
+                    'https://img.alicdn.com/bao/uploaded/i1/2201504521587/O1CN01JYdZQk1xW9jYVnzQN_!!2201504521587.jpg',
+                    'https://img.alicdn.com/bao/uploaded/i2/2201504521587/O1CN01JYdZQk1xW9jYVnzQN_!!2201504521587.jpg',
+                    'https://img.alicdn.com/bao/uploaded/i3/2201504521587/O1CN01JYdZQk1xW9jYVnzQN_!!2201504521587.jpg',
+                    'https://img.alicdn.com/bao/uploaded/i4/2201504521587/O1CN01JYdZQk1xW9jYVnzQN_!!2201504521587.jpg'
+                ],
+                link: 'https://item.taobao.com/item.htm?id=674899123456'
+            },
+            'product2': {
+                name: '珂拉琪芭比唇釉丝绒233',
+                price: '¥51',
+                desc: '镜面水光766口红723正品，丝绒质地，色彩饱满，打造高级雾面妆效。',
+                images: [
+                    'https://img.alicdn.com/bao/uploaded/i2/2201504521587/O1CN01JYdZQk1xW9jYVnzQN_!!2201504521587.jpg',
+                    'https://img.alicdn.com/bao/uploaded/i1/2201504521587/O1CN01JYdZQk1xW9jYVnzQN_!!2201504521587.jpg',
+                    'https://img.alicdn.com/bao/uploaded/i3/2201504521587/O1CN01JYdZQk1xW9jYVnzQN_!!2201504521587.jpg',
+                    'https://img.alicdn.com/bao/uploaded/i4/2201504521587/O1CN01JYdZQk1xW9jYVnzQN_!!2201504521587.jpg'
+                ],
+                link: 'https://item.taobao.com/item.htm?id=674899123457'
+            },
+            'product3': {
+                name: '珂拉琪冰淇淋唇釉P615',
+                price: '¥51',
+                desc: '空气丝绒r888镜面水光730口红，冰淇淋般柔滑质地，持久不脱色。',
+                images: [
+                    'https://img.alicdn.com/bao/uploaded/i3/2201504521587/O1CN01JYdZQk1xW9jYVnzQN_!!2201504521587.jpg',
+                    'https://img.alicdn.com/bao/uploaded/i1/2201504521587/O1CN01JYdZQk1xW9jYVnzQN_!!2201504521587.jpg',
+                    'https://img.alicdn.com/bao/uploaded/i2/2201504521587/O1CN01JYdZQk1xW9jYVnzQN_!!2201504521587.jpg',
+                    'https://img.alicdn.com/bao/uploaded/i4/2201504521587/O1CN01JYdZQk1xW9jYVnzQN_!!2201504521587.jpg'
+                ],
+                link: 'https://item.taobao.com/item.htm?id=674899123458'
+            },
+            'product4': {
+                name: '珂拉琪水雾唇露O349',
+                price: '¥51',
+                desc: '水光O311不沾杯口红307唇釉，轻薄水润，打造自然裸妆效果。',
+                images: [
+                    'https://img.alicdn.com/bao/uploaded/i4/2201504521587/O1CN01JYdZQk1xW9jYVnzQN_!!2201504521587.jpg',
+                    'https://img.alicdn.com/bao/uploaded/i1/2201504521587/O1CN01JYdZQk1xW9jYVnzQN_!!2201504521587.jpg',
+                    'https://img.alicdn.com/bao/uploaded/i2/2201504521587/O1CN01JYdZQk1xW9jYVnzQN_!!2201504521587.jpg',
+                    'https://img.alicdn.com/bao/uploaded/i3/2201504521587/O1CN01JYdZQk1xW9jYVnzQN_!!2201504521587.jpg'
+                ],
+                link: 'https://item.taobao.com/item.htm?id=674899123459'
+            },
+            'product5': {
+                name: '珂拉琪可可粉雾唇泥923',
+                price: '¥51',
+                desc: '捏捏唇泥m07唇釉921口红，丝绒质地，色彩饱满，打造高级雾面妆效。',
+                images: [
+                    'https://img.alicdn.com/bao/uploaded/i1/2201504521587/O1CN01JYdZQk1xW9jYVnzQN_!!2201504521587.jpg',
+                    'https://img.alicdn.com/bao/uploaded/i2/2201504521587/O1CN01J
